@@ -1,0 +1,30 @@
+{
+  "name": "kur3naichatv2",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@faker-js/faker": "^7.6.0",
+    "@twurple/api": "^5.2.5",
+    "@twurple/auth": "^5.2.5",
+    "@twurple/auth-ext": "^5.2.5",
+    "@twurple/chat": "^5.2.5",
+    "@twurple/eventsub": "^5.2.5",
+    "react-spring": "^9.5.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "@vitejs/plugin-react": "^2.2.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.0",
+    "prettier": "^2.7.1"
+  }
+}
