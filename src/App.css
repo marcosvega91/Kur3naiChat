@@ -1,4 +1,10 @@
-
+@font-face {
+  font-family: 'FredokaOne';
+  src: url('/fonts/FredokaOne-Regular.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --primaryColor: #feeae7;
@@ -20,7 +26,7 @@
   --subTextColor: #4B1101;
 }
 * {
-  font-family: 'CUTE FROG';
+  font-family: 'FredokaOne';
   box-sizing: border-box;
 }
 
