@@ -64,6 +64,7 @@ function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }:
 
   React.useEffect(() => {
     twitchChat?.onMessage((_, user, __, msg) => {
+      if (user.toLowerCase() === 'streamelements') return
       if (msg.bits > 0) {
         debounceAppend({
           type: 'bit',

@@ -33,7 +33,6 @@ export function useTwitchFollow(channel: string, clientId: string, clientSecret:
             followedUser: user.id,
           })
           .then((paginatedResults) => {
-            console.log(paginatedResults)
             if (paginatedResults.data.length > 0) {
               if (!lastFollowers) {
                 setLastFollowers(paginatedResults.data.map(({ userId }) => userId))
