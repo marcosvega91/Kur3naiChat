@@ -55,6 +55,7 @@ function ChannelEvents({ fakeEvents, channel, clientId, clientSecret }: Props) {
 
   React.useEffect(() => {
     twitchChat?.onMessage((_, user, __, msg) => {
+      if (msg.userInfo.userName.toLowerCase() === 'streamelements') return
       if (msg.bits > 0) {
         appendEvent({
           type: 'bit',
