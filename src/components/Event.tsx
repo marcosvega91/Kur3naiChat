@@ -6,17 +6,25 @@ import type {
   ChannelRaid,
   ChannelReSub,
   ChannelReSubPrime,
+  ChannelReSubTier2,
+  ChannelReSubTier3,
   ChannelSub,
   ChannelSubGift,
   ChannelSubGiftToUser,
+  ChannelSubTier2,
+  ChannelSubTier3,
 } from './glossary'
 import bit from '../assets/bit_icon.png'
 import follow from '../assets/follow_icon.png'
 import prime from '../assets/prime_icon.png'
 import raid from '../assets/raid_icon.png'
 import resub from '../assets/resub_icon.png'
+import resubtier2 from '../assets/resubtier2_icon.png'
+import resubtier3 from '../assets/resubtier3_icon.png'
 import resubprime from '../assets/resubprime_icon.png'
 import sub from '../assets/sub_icon.png'
+import subtier2 from '../assets/subtier2_icon.png'
+import subtier3 from '../assets/subtier3_icon.png'
 import gift from '../assets/gift_icon.png'
 import pattern_bit from '../assets/pattern_bit.png'
 import pattern_follow from '../assets/pattern_follow.png'
@@ -30,9 +38,13 @@ import pattern_sub from '../assets/pattern_sub.png'
 interface Props {
   data:
     | ChannelSub
+    | ChannelSubTier2
+    | ChannelSubTier3
     | ChannelFollow
     | ChannelRaid
     | ChannelReSub
+    | ChannelReSubTier2
+    | ChannelReSubTier3
     | ChannelSubGiftToUser
     | ChannelSubGift
     | ChannelBit
@@ -46,6 +58,18 @@ function Event({ data }: Props) {
       case 'sub': {
         return {
           icon: sub,
+          pattern: pattern_sub,
+        }
+      }
+      case 'subtier2': {
+        return {
+          icon: subtier2,
+          pattern: pattern_sub,
+        }
+      }
+      case 'subtier3': {
+        return {
+          icon: subtier3,
           pattern: pattern_sub,
         }
       }
@@ -80,6 +104,18 @@ function Event({ data }: Props) {
           pattern: pattern_resub,
         }
       }
+      case 'resubtier2': {
+        return {
+          icon: resubtier2,
+          pattern: pattern_resub,
+        }
+      }
+      case 'resubtier3': {
+        return {
+          icon: resubtier3,
+          pattern: pattern_resub,
+        }
+      }
       case 'raid': {
         return {
           icon: raid,
@@ -103,6 +139,8 @@ function Event({ data }: Props) {
 
   const text = (() => {
     switch (data.type) {
+      case 'subtier2':
+      case 'subtier3':
       case 'sub': {
         return (
           <>
@@ -144,6 +182,8 @@ function Event({ data }: Props) {
           </>
         )
       }
+      case 'resubtier2':
+      case 'resubtier3':
       case 'resub': {
         return (
           <>

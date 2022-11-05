@@ -5,9 +5,13 @@ import type { ChannelEvent, UserType } from '../components/glossary'
 const events = [
   'message',
   'sub',
+  'subtier2',
+  'subtier3',
   'raid',
   'follow',
   'resub',
+  'resubtier2',
+  'resubtier3',
   'subgiftuser',
   'subgift',
   'bit',
@@ -17,6 +21,7 @@ const events = [
 const userTypes: UserType[] = ['mod', 'sub', 'vip', 'me', 'none']
 
 export function useFakeEvents(appendEvent: (event: ChannelEvent) => void) {
+  const fakeId = React.useRef(0)
   return React.useMemo(() => {
     let intervalId: NodeJS.Timeout
     return {
@@ -37,24 +42,42 @@ export function useFakeEvents(appendEvent: (event: ChannelEvent) => void) {
               }
               case 'follow': {
                 return {
+                  id: fakeId.current++,
                   type: 'follow',
                   username: faker.internet.userName(),
                 }
               }
               case 'sub': {
                 return {
+                  id: fakeId.current++,
                   type: 'sub',
+                  username: faker.internet.userName(),
+                }
+              }
+              case 'subtier2': {
+                return {
+                  id: fakeId.current++,
+                  type: 'subtier2',
+                  username: faker.internet.userName(),
+                }
+              }
+              case 'subtier3': {
+                return {
+                  id: fakeId.current++,
+                  type: 'subtier3',
                   username: faker.internet.userName(),
                 }
               }
               case 'prime': {
                 return {
+                  id: fakeId.current++,
                   type: 'prime',
                   username: faker.internet.userName(),
                 }
               }
               case 'resubprime': {
                 return {
+                  id: fakeId.current++,
                   type: 'resubprime',
                   username: faker.internet.userName(),
                   numMonths: parseInt(faker.random.numeric(), 10),
@@ -62,6 +85,7 @@ export function useFakeEvents(appendEvent: (event: ChannelEvent) => void) {
               }
               case 'subgiftuser': {
                 return {
+                  id: fakeId.current++,
                   type: 'subgiftuser',
                   username: faker.internet.userName(),
                   recipient: faker.internet.userName(),
@@ -69,6 +93,7 @@ export function useFakeEvents(appendEvent: (event: ChannelEvent) => void) {
               }
               case 'subgift': {
                 return {
+                  id: fakeId.current++,
                   type: 'subgift',
                   username: faker.internet.userName(),
                   count: parseInt(faker.random.numeric(), 10),
@@ -76,13 +101,31 @@ export function useFakeEvents(appendEvent: (event: ChannelEvent) => void) {
               }
               case 'resub': {
                 return {
+                  id: fakeId.current++,
                   type: 'resub',
+                  username: faker.internet.userName(),
+                  numMonths: parseInt(faker.random.numeric(), 10),
+                }
+              }
+              case 'resubtier2': {
+                return {
+                  id: fakeId.current++,
+                  type: 'resubtier2',
+                  username: faker.internet.userName(),
+                  numMonths: parseInt(faker.random.numeric(), 10),
+                }
+              }
+              case 'resubtier3': {
+                return {
+                  id: fakeId.current++,
+                  type: 'resubtier3',
                   username: faker.internet.userName(),
                   numMonths: parseInt(faker.random.numeric(), 10),
                 }
               }
               case 'raid': {
                 return {
+                  id: fakeId.current++,
                   type: 'raid',
                   username: faker.internet.userName(),
                   count: parseInt(faker.random.numeric(), 10),
@@ -90,6 +133,7 @@ export function useFakeEvents(appendEvent: (event: ChannelEvent) => void) {
               }
               case 'bit': {
                 return {
+                  id: fakeId.current++,
                   type: 'bit',
                   username: faker.internet.userName(),
                   count: parseInt(faker.random.numeric(), 10),

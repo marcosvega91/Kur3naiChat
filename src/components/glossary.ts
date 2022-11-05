@@ -17,6 +17,14 @@ export type ChannelSub = UserAction & {
   type: 'sub'
 }
 
+export type ChannelSubTier2 = UserAction & {
+  type: 'subtier2'
+}
+
+export type ChannelSubTier3 = UserAction & {
+  type: 'subtier3'
+}
+
 export type ChannelPrime = UserAction & {
   type: 'prime'
 }
@@ -41,6 +49,16 @@ export type ChannelReSub = UserAction & {
   numMonths: number
 }
 
+export type ChannelReSubTier2 = UserAction & {
+  type: 'resubtier2'
+  numMonths: number
+}
+
+export type ChannelReSubTier3 = UserAction & {
+  type: 'resubtier3'
+  numMonths: number
+}
+
 export type ChannelRaid = UserAction & {
   type: 'raid'
   count: number
@@ -58,10 +76,14 @@ export type ChannelBit = UserAction & {
 
 export type ChannelEvent =
   | ChannelSub
+  | ChannelSubTier2
+  | ChannelSubTier3
   | ChannelMessage
   | ChannelFollow
   | ChannelRaid
   | ChannelReSub
+  | ChannelReSubTier2
+  | ChannelReSubTier3
   | ChannelSubGiftToUser
   | ChannelSubGift
   | ChannelBit
