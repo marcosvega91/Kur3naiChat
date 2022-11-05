@@ -13,6 +13,11 @@
   --meBackgroundColor: #e93939;
   --noneTextColor:#660E00;
   --noneBackgroundColor: #ffc6bd;
+  --giftTextColor: #8D4E02;
+  --subprimeTextColor: #063656;
+  --bitTextColor: #50075A;
+  --followTextColor: #043334;
+  --subTextColor: #4B1101;
 }
 * {
   font-family: 'CUTE FROG';
@@ -131,6 +136,28 @@
   word-break: break-all;
   font-family: 'Cute Stitch';
 }
+
+.chat .event.chat--subgift .chat-user, .chat .event.chat--subgiftuser .chat-user{
+  color:var(--giftTextColor);
+}
+
+.chat .event.chat--subprime .chat-user, .chat .event.chat--resubprime .chat-user{
+  color:var(--subprimeTextColor);
+}
+
+.chat .event.chat--bit .chat-user{
+  color:var(--bitTextColor);
+}
+
+.chat .event.chat--follow .chat-user{
+  color:var(--followTextColor);
+}
+
+.chat .event.chat--resub .chat-user, .chat .event.chat--resubtier2 .chat-user,.chat .event.chat--resubtier3 .chat-user{
+  color:var(--subTextColor);
+}
+
+
 .chat .event .chat-icon {
   position: absolute;
   top: 0;
