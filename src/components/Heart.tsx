@@ -21,7 +21,10 @@ function Heart({ event }: Props) {
         setActive(false)
       }, 5000)
 
-      return () => clearTimeout(timeoutId)
+      return () => {
+        clearTimeout(timeoutId)
+        setActive(false)
+      }
     }
   }, [event])
   if (!event || !active) return null
