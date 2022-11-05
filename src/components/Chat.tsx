@@ -7,6 +7,7 @@ import Event from './Event'
 import type { ChannelEvent, UserType } from './glossary'
 import Message from './Message'
 import { useDebounceAppend } from '../hooks/useDebounceAppend'
+import baloon from '../assets/baloon.png'
 
 interface Props {
   channel: string
@@ -137,7 +138,7 @@ function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }:
   return (
     <div className={className}>
       <div className="chat-baloon">
-        <img src="/images/baloon.png" />
+        <img src={baloon} />
         {heart(lastEventType)}
       </div>
       <div className="chat-wrapper">

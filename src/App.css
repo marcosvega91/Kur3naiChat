@@ -1,17 +1,4 @@
-@font-face {
-  font-family: 'cute-frog';
-  src: url('/fonts/cute-frog.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Cute-Stitch';
-  src: url('/fonts/Cute-Stitch.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 :root {
   --primaryColor: #feeae7;
@@ -22,7 +9,7 @@
   --noneColor: #ffc6bd;
 }
 * {
-  font-family: 'cute-frog';
+  font-family: 'CUTE FROG';
   box-sizing: border-box;
 }
 
@@ -134,7 +121,7 @@
   font-size: 0.8rem;
   text-align: center;
   word-break: break-all;
-  font-family: 'Cute-Stitch';
+  font-family: 'Cute Stitch';
 }
 .chat .event .chat-icon {
   position: absolute;
