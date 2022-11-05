@@ -157,7 +157,7 @@
   color: var(--giftTextColor);
 }
 
-.chat .event.chat--subprime .chat-user,
+.chat .event.chat--prime .chat-user,
 .chat .event.chat--resubprime .chat-user {
   color: var(--subprimeTextColor);
 }
