@@ -106,6 +106,8 @@
   background-color: var(--primaryColor);
   font-size: 0.7rem;
   text-align: center;
+  word-break: break-all;
+  text-transform: uppercase;
 }
 
 
