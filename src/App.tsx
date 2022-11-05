@@ -1,16 +1,10 @@
-import { animated, useSpring } from 'react-spring'
 import './App.css'
 import Chat from './components/Chat'
 import Heart from './components/Heart'
 
 function App() {
   const fakeEvents = new URL(location.href).searchParams.get('fakeEvents') !== null
-  const styles = useSpring({
-    loop: true,
-    to: [{ transform: 'scale(1.2)' }, { transform: 'scale(0.8)' }],
-    from: { transform: 'scale(1)' },
-    config: { duration: 600 },
-  })
+
   return (
     <Chat
       className="chat"

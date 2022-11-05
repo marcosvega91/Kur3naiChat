@@ -9,9 +9,15 @@ function Heart({ event }: Props) {
   const [active, setActive] = React.useState(true)
   const styles = useSpring({
     loop: true,
-    to: [{ transform: 'scale(1.2)' }, { transform: 'scale(0.8)' }],
-    from: { transform: 'scale(1)' },
-    config: { duration: 600 },
+    to: [
+      { opacity: '0.7' },
+      { transform: 'scale(1.2)' },
+      { transform: 'scale(1)' },
+      { transform: 'scale(1.2)' },
+      { transform: 'scale(1)' },
+      { transform: 'scale(1.2)' },
+    ],
+    config: { duration: 300 },
   })
 
   React.useEffect(() => {

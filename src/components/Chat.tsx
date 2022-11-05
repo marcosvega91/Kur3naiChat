@@ -6,6 +6,7 @@ import { useFakeEvents } from '../hooks/useFakeEvents'
 import Event from './Event'
 import type { ChannelEvent, UserType } from './glossary'
 import Message from './Message'
+import { useDebounceAppend } from '../hooks/useDebounceAppend'
 
 interface Props {
   channel: string
@@ -37,10 +38,10 @@ function toHtml(parts: ParsedMessagePart[]) {
 
 function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }: Props) {
   const twitchChat = useTwitchChat(channel)
-  const [tailActive, setTailActive] = React.useState(true)
   const twitchFollow = useTwitchFollow(channel, clientId, clientSecret)
   const [channelEvents, setChannelEvents] = React.useState<ChannelEvent[]>([])
   const [lastEventType, setLastEventType] = React.useState<string>()
+
   const appendEvent = React.useCallback((event: ChannelEvent) => {
     setChannelEvents((channelEvents) => {
       const events = [event, ...channelEvents]
@@ -49,7 +50,9 @@ function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }:
     if (event.type !== 'message') setLastEventType(event.type)
   }, [])
 
-  const { start, stop } = useFakeEvents(appendEvent)
+  const debounceAppend = useDebounceAppend(appendEvent, 2000)
+
+  const { start, stop } = useFakeEvents(debounceAppend)
 
   React.useEffect(() => {
     if (fakeEvents) {
@@ -61,7 +64,7 @@ function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }:
   React.useEffect(() => {
     twitchChat?.onMessage((_, user, __, msg) => {
       if (msg.bits > 0) {
-        appendEvent({
+        debounceAppend({
           type: 'bit',
           username: user,
           count: msg.bits,
@@ -91,19 +94,19 @@ function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }:
     })
     twitchChat?.onSub((_, username, subInfo) => {
       if (subInfo.isPrime) {
-        appendEvent({ type: 'prime', username: username })
-      } else appendEvent({ type: 'sub', username: username })
+        debounceAppend({ type: 'prime', username: username })
+      } else debounceAppend({ type: 'sub', username: username })
     })
 
     twitchChat?.onResub((_, username, subInfo) => {
       if (subInfo.isPrime) {
-        appendEvent({
+        debounceAppend({
           type: 'resubprime',
           username: username,
           numMonths: subInfo.months,
         })
       } else
-        appendEvent({
+        debounceAppend({
           type: 'resub',
           username: username,
           numMonths: subInfo.months,
@@ -111,24 +114,25 @@ function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }:
     })
 
     twitchChat?.onRaid((_, username, raidInfo) => {
-      appendEvent({ type: 'raid', username: username, count: raidInfo.viewerCount })
+      debounceAppend({ type: 'raid', username: username, count: raidInfo.viewerCount })
     })
 
     twitchChat?.onSubGift((_, username, subInfo) => {
       if (subInfo.gifter)
-        appendEvent({ type: 'subgiftuser', username: username, recipient: subInfo.gifter })
+        debounceAppend({ type: 'subgiftuser', username: username, recipient: subInfo.gifter })
     })
 
     twitchChat?.onCommunitySub((_, username, subInfo) => {
-      if (subInfo.gifter) appendEvent({ type: 'subgift', username: username, count: subInfo.count })
+      if (subInfo.gifter)
+        debounceAppend({ type: 'subgift', username: username, count: subInfo.count })
     })
-  }, [twitchChat, appendEvent])
+  }, [twitchChat, debounceAppend])
 
   React.useEffect(() => {
     twitchFollow?.onFollow((username) => {
-      appendEvent({ type: 'follow', username: username })
+      debounceAppend({ type: 'follow', username: username })
     })
-  }, [twitchFollow, appendEvent])
+  }, [twitchFollow, debounceAppend])
 
   return (
     <div className={className}>
