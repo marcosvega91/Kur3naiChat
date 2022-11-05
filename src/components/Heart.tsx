@@ -1,5 +1,15 @@
 import * as React from 'react'
 import { animated, useSpring } from 'react-spring'
+import bit from '../assets/bit.png'
+import follow from '../assets/follow.png'
+import normal from '../assets/normal.png'
+import prime from '../assets/prime.png'
+import raid from '../assets/raid.png'
+import resub from '../assets/resub.png'
+import resubprime from '../assets/resubprime.png'
+import sub from '../assets/sub.png'
+import subgift from '../assets/subgift.png'
+import subgiftuser from '../assets/subgiftuser.png'
 
 interface Props {
   event?: string
@@ -33,8 +43,44 @@ function Heart({ event }: Props) {
       }
     }
   }, [event])
-  if (!event || !active) return null
-  return <animated.img style={{ ...styles }} className="heart" src={`/images/${event}.png`} />
+
+  const icon = (() => {
+    if (!active || !event) return normal
+    switch (event) {
+      case 'sub': {
+        return sub
+      }
+      case 'prime': {
+        return prime
+      }
+      case 'follow': {
+        return follow
+      }
+      case 'subgiftuser': {
+        return subgiftuser
+      }
+      case 'subgift': {
+        return subgift
+      }
+      case 'resubprime': {
+        return resubprime
+      }
+      case 'resub': {
+        return resub
+      }
+      case 'raid': {
+        return raid
+      }
+      case 'bit': {
+        return bit
+      }
+      default: {
+        return normal
+      }
+    }
+  })()
+
+  return <animated.img style={{ ...styles }} className="heart" src={icon} />
 }
 
 export default Heart

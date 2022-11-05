@@ -10,6 +10,14 @@ import type {
   ChannelSubGift,
   ChannelSubGiftToUser,
 } from './glossary'
+import bit from '../assets/bit_icon.png'
+import follow from '../assets/follow_icon.png'
+import prime from '../assets/prime_icon.png'
+import raid from '../assets/raid_icon.png'
+import resub from '../assets/resub_icon.png'
+import sub from '../assets/sub_icon.png'
+import gift from '../assets/gift_icon.png'
+
 interface Props {
   data:
     | ChannelSub
@@ -27,29 +35,27 @@ function Event({ data }: Props) {
   const icon = (() => {
     switch (data.type) {
       case 'sub': {
-        return '/images/sub_icon.png'
+        return sub
       }
       case 'prime': {
-        return '/images/prime_icon.png'
+        return prime
       }
       case 'follow': {
-        return '/images/follow_icon.png'
+        return follow
       }
+      case 'subgift':
       case 'subgiftuser': {
-        return '/images/gift_icon.png'
-      }
-      case 'subgift': {
-        return '/images/gift_icon.png'
+        return gift
       }
       case 'resubprime':
       case 'resub': {
-        return '/images/resub_icon.png'
+        return resub
       }
       case 'raid': {
-        return '/images/raid_icon.png'
+        return raid
       }
       case 'bit': {
-        return '/images/bit_icon.png'
+        return bit
       }
       default: {
         break
