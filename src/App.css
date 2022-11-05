@@ -98,7 +98,7 @@
 
 .chat .chat--message .chat--message-text {
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 10px 10px;
   min-height: 30px;
   flex: 1;
   position: relative;
