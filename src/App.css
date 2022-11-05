@@ -2,11 +2,17 @@
 
 :root {
   --primaryColor: #feeae7;
-  --modColor: #00aabc;
-  --subColor: #fe9786;
-  --vipColor: #f0a8f8;
-  --meColor: #e93939;
-  --noneColor: #ffc6bd;
+  --border: #fe9786;
+  --modTextColor: #fff;
+  --modBackgroundColor: #00aabc;
+  --subBackgroundColor: #ffaa92;
+  --subTextColor: #4D0A00;
+  --vipTextColor: #50075A;
+  --vipBackgroundColor: #f0a8f8;
+  --meTextColor: #fff;
+  --meBackgroundColor: #e93939;
+  --noneTextColor:#660E00;
+  --noneBackgroundColor: #ffc6bd;
 }
 * {
   font-family: 'CUTE FROG';
@@ -20,7 +26,7 @@
   right: 10px;
   bottom: 40px;
   left: 10px;
-  border: 5px solid var(--primaryColor);
+  border: 5px solid var(--border);
   border-radius: 40px;
   padding: 30px 20px 10px 20px;
 }
@@ -153,27 +159,27 @@
 .chat .chat--message-user-type-acc__me .big-circle,
 .chat .chat--message-user-type-acc__me .circle,
 .chat .chat--message-user-type-acc__me .line {
-  background-color: var(--meColor);
+  background-color: var(--meBackgroundColor);
 }
 .chat .chat--message-user-type-acc__mod .big-circle,
 .chat .chat--message-user-type-acc__mod .circle,
 .chat .chat--message-user-type-acc__mod .line {
-  background-color: var(--modColor);
+  background-color: var(--modBackgroundColor);
 }
 .chat .chat--message-user-type-acc__sub .big-circle,
 .chat .chat--message-user-type-acc__sub .circle,
 .chat .chat--message-user-type-acc__sub .line {
-  background-color: var(--subColor);
+  background-color: var(--subBackgroundColor);
 }
 .chat .chat--message-user-type-acc__vip .big-circle,
 .chat .chat--message-user-type-acc__vip .circle,
 .chat .chat--message-user-type-acc__vip .line {
-  background-color: var(--vipColor);
+  background-color: var(--vipBackgroundColor);
 }
 .chat .chat--message-user-type-acc__none .big-circle,
 .chat .chat--message-user-type-acc__none .circle,
 .chat .chat--message-user-type-acc__none .line {
-  background-color: var(--noneColor);
+  background-color: var(--noneBackgroundColor);
 }
 
 .chat .chat--message-user-type-acc .big-circle {
@@ -201,20 +207,26 @@
   text-transform: uppercase;
   word-break: break-all;
 }
+
 .chat .chat--message .chat--message-user-type__mod {
-  background-color: var(--modColor);
+  background-color: var(--modBackgroundColor);
+  color: var(--modTextColor);
 }
 .chat .chat--message .chat--message-user-type__me {
-  background-color: var(--meColor);
+  background-color: var(--meBackgroundColor);
+  color: var(--meTextColor);
 }
 .chat .chat--message .chat--message-user-type__vip {
-  background-color: var(--vipColor);
+  background-color: var(--vipBackgroundColor);
+  color: var(--vipTextColor);
 }
 .chat .chat--message .chat--message-user-type__none {
-  background-color: var(--noneColor);
+  background-color: var(--noneBackgroundColor);
+  color: var(--noneTextColor);
 }
 .chat .chat--message .chat--message-user-type__sub {
-  background-color: var(--subColor);
+  background-color: var(--subBackgroundColor);
+  color: var(--subTextColor);
 }
 .chat .chat--message:nth-child(odd) {
   align-self: flex-end;
