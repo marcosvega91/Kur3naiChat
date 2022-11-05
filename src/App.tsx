@@ -1,9 +1,21 @@
+import * as React from 'react'
 import './App.css'
 import Chat from './components/Chat'
 import Heart from './components/Heart'
 
 function App() {
-  const fakeEvents = new URL(location.href).searchParams.get('fakeEvents') !== null
+  const [fakeEvents, setFakeEvents] = React.useState(
+    new URL(location.href).searchParams.get('fakeEvents') !== null,
+  )
+
+  React.useEffect(() => {
+    window.addEventListener('onWidgetLoad', async function (obj: any) {
+      console.log(obj?.detail?.fieldData?.fakeEvents)
+      if (obj?.detail?.fieldData?.fakeEvents) {
+        setFakeEvents(true)
+      }
+    })
+  }, [])
 
   return (
     <Chat

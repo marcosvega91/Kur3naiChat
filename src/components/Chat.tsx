@@ -59,7 +59,7 @@ function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }:
       start()
       return () => stop()
     }
-  }, [])
+  }, [fakeEvents])
 
   React.useEffect(() => {
     twitchChat?.onMessage((_, user, __, msg) => {

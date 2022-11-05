@@ -1,0 +1,8 @@
+{
+  "fakeEvents": {
+    "label": "Use fake events",
+    "group": "Debug",
+    "type": "checkbox",
+    "value": false
+  }
+}
