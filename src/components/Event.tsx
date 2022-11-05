@@ -17,6 +17,14 @@ import raid from '../assets/raid_icon.png'
 import resub from '../assets/resub_icon.png'
 import sub from '../assets/sub_icon.png'
 import gift from '../assets/gift_icon.png'
+import pattern_bit from '../assets/pattern_bit.png'
+import pattern_follow from '../assets/pattern_follow.png'
+import pattern_gift from '../assets/pattern_gift.png'
+import pattern_prime from '../assets/pattern_prime.png'
+import pattern_raid from '../assets/pattern_raid.png'
+import pattern_resub_prime from '../assets/pattern_resub_prime.png'
+import pattern_resub from '../assets/pattern_resub.png'
+import pattern_sub from '../assets/pattern_sub.png'
 
 interface Props {
   data:
@@ -32,33 +40,62 @@ interface Props {
 }
 
 function Event({ data }: Props) {
-  const icon = (() => {
+  const { icon, pattern } = (() => {
     switch (data.type) {
       case 'sub': {
-        return sub
+        return {
+          icon: sub,
+          pattern: pattern_sub,
+        }
       }
       case 'prime': {
-        return prime
+        return {
+          icon: prime,
+          pattern: pattern_prime,
+        }
       }
       case 'follow': {
-        return follow
+        return {
+          icon: follow,
+          pattern: pattern_follow,
+        }
       }
       case 'subgift':
       case 'subgiftuser': {
-        return gift
+        return {
+          icon: gift,
+          pattern: pattern_gift,
+        }
       }
-      case 'resubprime':
+      case 'resubprime': {
+        return {
+          icon: resub,
+          pattern: pattern_resub_prime,
+        }
+      }
       case 'resub': {
-        return resub
+        return {
+          icon: resub,
+          pattern: pattern_resub,
+        }
       }
       case 'raid': {
-        return raid
+        return {
+          icon: raid,
+          pattern: pattern_raid,
+        }
       }
       case 'bit': {
-        return bit
+        return {
+          icon: bit,
+          pattern: pattern_bit,
+        }
       }
       default: {
-        break
+        return {
+          icon: null,
+          pattern: null,
+        }
       }
     }
   })()
@@ -163,7 +200,7 @@ function Event({ data }: Props) {
 
   return (
     <animated.div style={{ ...messageSpringProps, margin: '0 auto' }}>
-      <div className={`event chat--${data.type}`}>
+      <div className={`event chat--${data.type}`} style={{ backgroundImage: `url("${pattern}")` }}>
         <img src={icon} className="chat-icon" />
         {text}
       </div>

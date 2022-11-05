@@ -45,7 +45,7 @@ function Heart({ event }: Props) {
   }, [event])
 
   const icon = (() => {
-    if (!active || !event) return normal
+    if (!active || !event) return null
     switch (event) {
       case 'sub': {
         return sub
@@ -75,11 +75,11 @@ function Heart({ event }: Props) {
         return bit
       }
       default: {
-        return normal
+        return null
       }
     }
   })()
-
+  if (!icon) return <img src={normal} className="heart" />
   return <animated.img style={{ ...styles }} className="heart" src={icon} />
 }
 
