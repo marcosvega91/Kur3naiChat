@@ -1,19 +1,17 @@
-import * as React from 'react'
+import React from 'react'
 import type { ParsedMessagePart } from '@twurple/common'
+import { useFakeEvents } from '../hooks/useFakeEvents'
 import { useTwitchChat } from '../hooks/useTwitchChat'
 import { useTwitchFollow } from '../hooks/useTwitchFollow'
-import { useFakeEvents } from '../hooks/useFakeEvents'
-import Event from './Event'
-import type { ChannelEvent, UserType } from './glossary'
+import { ChannelEvent, UserType } from './glossary'
 import Message from './Message'
+import Event from './Event'
 
 interface Props {
   channel: string
   clientId: string
   clientSecret: string
   fakeEvents: boolean
-  heart: (event?: string) => React.ReactNode
-  className?: string
 }
 
 function toHtml(parts: ParsedMessagePart[]) {
@@ -35,18 +33,15 @@ function toHtml(parts: ParsedMessagePart[]) {
   }, '')
 }
 
-function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }: Props) {
+function ChannelEvents({ fakeEvents, channel, clientId, clientSecret }: Props) {
   const twitchChat = useTwitchChat(channel)
-  const [tailActive, setTailActive] = React.useState(true)
   const twitchFollow = useTwitchFollow(channel, clientId, clientSecret)
   const [channelEvents, setChannelEvents] = React.useState<ChannelEvent[]>([])
-  const [lastEventType, setLastEventType] = React.useState<string>()
   const appendEvent = React.useCallback((event: ChannelEvent) => {
     setChannelEvents((channelEvents) => {
       const events = [event, ...channelEvents]
       return events.slice(0, Math.min(20, events.length))
     })
-    if (event.type !== 'message') setLastEventType(event.type)
   }, [])
 
   const { start, stop } = useFakeEvents(appendEvent)
@@ -129,29 +124,19 @@ function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }:
       appendEvent({ type: 'follow', username: username })
     })
   }, [twitchFollow, appendEvent])
-
   return (
-    <div className={className}>
-      <div className="chat-baloon">
-        <img src="/images/baloon.png" />
-        {heart(lastEventType)}
-      </div>
-      <div className="chat-wrapper">
-        {channelEvents.map((channelEvent, index) => {
-          const direction = (channelEvents.length - (index + 1)) % 2 === 0 ? 'toRight' : 'toLeft'
-          if (channelEvent.type === 'message')
-            return (
-              <Message key={`msg-${channelEvent.id}`} direction={direction} data={channelEvent} />
-            )
-          else
-            return (
-              <Event key={`${channelEvent.type}-${channelEvent.username}`} data={channelEvent} />
-            )
-        })}
-      </div>
-      <div className="chat-end" />
+    <div className="chat-wrapper">
+      {channelEvents.map((channelEvent, index) => {
+        const direction = (channelEvents.length - (index + 1)) % 2 === 0 ? 'toRight' : 'toLeft'
+        if (channelEvent.type === 'message')
+          return (
+            <Message key={`msg-${channelEvent.id}`} direction={direction} data={channelEvent} />
+          )
+        else
+          return <Event key={`${channelEvent.type}-${channelEvent.username}`} data={channelEvent} />
+      })}
     </div>
   )
 }
 
-export default Chat
+export default ChannelEvents
