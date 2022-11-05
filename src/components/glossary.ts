@@ -9,6 +9,7 @@ export interface ChannelMessage {
 }
 
 export interface UserAction {
+  id: number
   username: string
 }
 

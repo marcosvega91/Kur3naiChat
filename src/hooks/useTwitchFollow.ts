@@ -5,6 +5,7 @@ import { useTwitchApi } from './useTwitchApi'
 type FollowCallback = (username: string) => void
 
 export function useTwitchFollow(channel: string, clientId: string, clientSecret: string) {
+  const [blackList, setBlackList] = React.useState<string[]>([])
   const [lastFollowers, setLastFollowers] = React.useState<string[]>()
   const twitchApi = useTwitchApi(clientId, clientSecret)
   const [user, setUser] = React.useState<HelixUser>()
@@ -38,8 +39,12 @@ export function useTwitchFollow(channel: string, clientId: string, clientSecret:
                 setLastFollowers(paginatedResults.data.map(({ userId }) => userId))
               } else {
                 for (let index = 0; index < paginatedResults.data.length; index++) {
-                  if (!lastFollowers.includes(paginatedResults.data[index].userId)) {
+                  if (
+                    !lastFollowers.includes(paginatedResults.data[index].userId) &&
+                    !blackList.includes(paginatedResults.data[index].userId)
+                  ) {
                     followCallback?.(paginatedResults.data[index].userName)
+                    setBlackList([...blackList, paginatedResults.data[index].userId])
                   }
                 }
                 setLastFollowers(paginatedResults.data.map(({ userId }) => userId))
@@ -52,7 +57,7 @@ export function useTwitchFollow(channel: string, clientId: string, clientSecret:
         clearInterval(intervalId)
       }
     }
-  }, [user, twitchApi, followCallback, lastFollowers])
+  }, [user, twitchApi, followCallback, lastFollowers, blackList])
 
   return twitchFollow
 }
