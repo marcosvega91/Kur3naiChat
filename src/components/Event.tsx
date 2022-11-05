@@ -15,6 +15,7 @@ import follow from '../assets/follow_icon.png'
 import prime from '../assets/prime_icon.png'
 import raid from '../assets/raid_icon.png'
 import resub from '../assets/resub_icon.png'
+import resubprime from '../assets/resubprime_icon.png'
 import sub from '../assets/sub_icon.png'
 import gift from '../assets/gift_icon.png'
 import pattern_bit from '../assets/pattern_bit.png'
@@ -69,7 +70,7 @@ function Event({ data }: Props) {
       }
       case 'resubprime': {
         return {
-          icon: resub,
+          icon: resubprime,
           pattern: pattern_resub_prime,
         }
       }
