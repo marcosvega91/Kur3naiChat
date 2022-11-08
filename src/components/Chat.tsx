@@ -7,10 +7,12 @@ import Event from './Event'
 import type { ChannelEvent, UserType } from './glossary'
 import Message from './Message'
 import { useDebounceAppend } from '../hooks/useDebounceAppend'
+import { useMessageFormatter } from '../hooks/useMessageFormatter'
 import baloon from '../assets/baloon.png'
 
 interface Props {
   channel: string
+  channelId: string
   clientId: string
   clientSecret: string
   fakeEvents: boolean
@@ -37,12 +39,13 @@ function toHtml(parts: ParsedMessagePart[]) {
   }, '')
 }
 
-function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }: Props) {
+function Chat({ channel, channelId, clientId, clientSecret, fakeEvents, heart, className }: Props) {
   const id = React.useRef(0)
   const twitchChat = useTwitchChat(channel)
   const twitchFollow = useTwitchFollow(channel, clientId, clientSecret)
   const [channelEvents, setChannelEvents] = React.useState<ChannelEvent[]>([])
   const [lastEventType, setLastEventType] = React.useState<string>()
+  const formatter = useMessageFormatter(channelId)
 
   const appendEvent = React.useCallback((event: ChannelEvent) => {
     setChannelEvents((channelEvents) => {
@@ -79,7 +82,7 @@ function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }:
           type: 'bit',
           username: user,
           count: msg.bits,
-          message: toHtml(msg.parseEmotes()),
+          message: toHtml(formatter(msg.parseEmotes())),
         })
         return
       }
@@ -94,13 +97,12 @@ function Chat({ channel, clientId, clientSecret, fakeEvents, heart, className }:
       if (userType === 'none') {
         userType = msg.userInfo.isSubscriber ? 'sub' : 'none'
       }
-
       appendEvent({
         type: 'message',
         username: user,
         id: msg.id,
         userType,
-        message: toHtml(msg.parseEmotes()),
+        message: toHtml(formatter(msg.parseEmotes())),
       })
     })
     twitchChat?.onSub((_, username, subInfo) => {

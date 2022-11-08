@@ -9,9 +9,18 @@ export function useTwitchChat(channel: string) {
 
   React.useEffect(() => {
     setIsConnected(false)
-    chatClient.connect().then(() => {
+
+    if (!chatClient.isConnected && !chatClient.isConnecting) {
+      chatClient.connect().then(() => {
+        setIsConnected(true)
+      })
+    } else if (chatClient.isConnected) {
       setIsConnected(true)
-    })
+    } else {
+      chatClient.onConnect(() => {
+        setIsConnected(true)
+      })
+    }
   }, [chatClient])
 
   return isConnected ? chatClient : null
