@@ -13,6 +13,7 @@ export function useMessageFormatter(channelId: string) {
 
   const formatter = React.useCallback(
     (message: ParsedMessagePart[]) => {
+      console.log(message)
       return message.reduce<ParsedMessagePart[]>((acc, part) => {
         if (part.type === 'text') {
           const text = part.text
@@ -52,6 +53,8 @@ export function useMessageFormatter(channelId: string) {
           }
 
           return [...acc, ...formattedTextParts]
+        } else {
+          return [...acc, part]
         }
         return acc
       }, [])
