@@ -142,8 +142,8 @@ function Chat({ channel, channelId, clientId, clientSecret, fakeEvents, heart, c
         debounceAppend({
           id: id.current++,
           type: 'subgiftuser',
-          username: username,
-          recipient: subInfo.gifter,
+          username: subInfo.gifter,
+          recipient: username,
         })
     })
 
