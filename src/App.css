@@ -6,6 +6,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'FredokaOne';
+  src: url('/fonts/FredokaOne-Regular.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --primaryColor: #feeae7;
   --border: #fe9786;
@@ -32,6 +40,7 @@
 }
 
 .chat {
+  background-color: transparent;
   position: fixed;
   top: 40px;
   right: 10px;
