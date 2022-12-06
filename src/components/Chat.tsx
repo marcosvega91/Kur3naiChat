@@ -166,10 +166,6 @@ function Chat({ channel, channelId, clientId, clientSecret, fakeEvents, heart, c
 
   return (
     <div className={className}>
-      <div className="chat-baloon">
-        <img src={baloon} />
-        {heart(lastEventType)}
-      </div>
       <div className="chat-wrapper">
         {channelEvents.map((channelEvent, index) => {
           const direction = (channelEvents.length - (index + 1)) % 2 === 0 ? 'toRight' : 'toLeft'

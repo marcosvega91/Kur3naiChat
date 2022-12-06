@@ -7,8 +7,8 @@
 }
 
 @font-face {
-  font-family: 'FredokaOne';
-  src: url('/fonts/FredokaOne-Regular.ttf') format('opentype');
+  font-family: 'RandomlyCute';
+  src: url('/fonts/RandomlyCute-GOqPA.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -31,11 +31,11 @@
   --subprimeTextColor: #3ab468;
   --bitTextColor: #3ab468;
   --followTextColor: #3ab468;
-  --subTextColor: white;
+  --subscriberTextColor: #3ab468;
 }
 
 * {
-  font-family: 'FredokaOne';
+  font-family: 'RandomlyCute';
   box-sizing: border-box;
 }
 
@@ -46,7 +46,6 @@
   right: 10px;
   bottom: 40px;
   left: 10px;
-  border: 5px solid var(--border);
   border-radius: 40px;
   padding: 30px 20px 10px 20px;
 }
@@ -59,7 +58,6 @@
   right: -10px;
   bottom: -10px;
   border-radius: 45px;
-  border: 5px solid white;
   z-index: -1;
 }
 
@@ -85,7 +83,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 13px;
   height: 100%;
   padding-top: 10px;
 }
@@ -133,7 +131,7 @@
   position: relative;
   overflow: hidden;
   background-color: white;
-  font-size: 0.7rem;
+  font-size: 1.2rem;
   text-align: center;
   word-break: break-all;
   text-transform: uppercase;
@@ -158,7 +156,7 @@
   grid-area: name;
   color: #3ab468;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-align: center;
   word-break: break-all;
   font-family: 'Cute Stitch';
@@ -188,7 +186,7 @@
 .chat .event.chat--resub .chat-user,
 .chat .event.chat--resubtier2 .chat-user,
 .chat .event.chat--resubtier3 .chat-user {
-  color: var(--subTextColor);
+  color: var(--subscriberTextColor);
 }
 
 
@@ -206,7 +204,7 @@
   grid-area: event;
   color: #07571f;
   text-align: center;
-  font-size: 0.6rem;
+  font-size: 1.4rem;
 }
 
 .chat .chat--message-container {
@@ -248,7 +246,7 @@
   font-weight: bold;
   align-self: flex-start;
   color: white;
-  font-size: 0.8rem;
+  font-size: 1.4rem;
   text-transform: uppercase;
   word-break: break-all;
   display:flex;
@@ -258,7 +256,7 @@
 
 .chat .chat--message .chat--message-user-type span{
   margin-left: 50px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .chat .chat--message .chat--message-user-type img{
